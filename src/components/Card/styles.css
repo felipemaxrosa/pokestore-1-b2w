@@ -1,0 +1,50 @@
+.card {
+  margin: 10px;
+  background: #f0f0f5;
+  border-radius: 5px;
+  box-shadow: black 2px 2px 5px;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+
+.value {
+  font-size: 1.2rem;
+}
+
+a {
+  background-color: #089b08;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 0;
+  border-radius: 0 0 5px 5px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+a:hover {
+  opacity: 80%;
+  transition-delay: 20ms;
+  cursor: pointer;
+}
+
+.img-pokemon {
+  margin: 20px;
+}

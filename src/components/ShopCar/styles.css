@@ -1,0 +1,35 @@
+.shop-car {
+  background-color: chocolate;
+  min-width: 450px;
+  max-height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.shop-car-title {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  border: black 1px solid;
+}
+
+.shop-car-footer {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+}
+
+.shop-car-items {
+  background-color: yellow;
+  height: 100%;
+}
+
+.shop-car-items-item {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
