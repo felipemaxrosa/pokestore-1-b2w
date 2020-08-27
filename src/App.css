@@ -1,26 +1,16 @@
 * {
-  margin: 0;
+  margin: 2px;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Do Hyeon", sans-serif;
 }
 
-body,
-input,
-button {
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--title-color);
-  font-family: "Ubuntu";
+body {
+  background: linear-gradient(to right, #030303, #dbdbdd);
 }
 
 .group {
   display: flex;
   flex-direction: row;
+  margin-top: 15px;
 }

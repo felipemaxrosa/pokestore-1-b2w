@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./styles.css";
-import { FiShoppingCart } from "react-icons/fi";
+import { FiShoppingCart, FiDelete } from "react-icons/fi";
+import IPokemon from "../../interfaces/IPokemon";
 
 interface SelectedPokemon {
   id: number;
@@ -14,7 +15,7 @@ interface NewItem {
 }
 
 interface ItemsProps {
-  items: SelectedPokemon[];
+  items: Array<IPokemon>;
 }
 
 // const handleItemsInMyShopCar = (item: NewItem) => {
@@ -23,27 +24,54 @@ interface ItemsProps {
 // };
 
 const ShopCar: React.SFC<ItemsProps> = ({ items }) => {
-  const [myItems, setMyItems] = useState([]);
-  const [sum, setSum] = useState(0);
-
   return (
     <div className="shop-car">
       <header className="shop-car-title">
-        <h2>Carrinho</h2>
+        <h2>PokeCar</h2>
         <FiShoppingCart size="35px" />
       </header>
 
-      <body className="shop-car-items">
-        <div className="shop-car-items-item">
-          <span>Item: 1</span>
-          <span>Charmander</span>
-          <span>R$ 0.00</span>
-        </div>
-      </body>
+      <div className="table">
+        <table className="pokecar-items">
+          <thead>
+            {items.length > 0 && (
+              <tr>
+                <th>#ID</th>
+                <th>Pokemon</th>
+                <th>Preço</th>
+                <th>Excluir</th>
+              </tr>
+            )}
+          </thead>
+
+          <tbody>
+            {items.map((item: IPokemon, index: number) => {
+              return (
+                <tr key={index}>
+                  <td>{item.id}</td>
+                  <td>{item.name}</td>
+                  <td>{item.price}</td>
+                  <td>
+                    <a href="#" style={{ backgroundColor: "transparent" }}>
+                      <FiDelete />
+                    </a>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
 
       <footer className="shop-car-footer">
         <h2>Total:</h2>
-        <h2>R$ 0.00</h2>
+        <h2>
+          {items
+            .reduce((acc, cur) => {
+              return (acc += cur.price);
+            }, 0)
+            .toFixed(2)}
+        </h2>
       </footer>
     </div>
   );

@@ -1,55 +1,83 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
 import Header from "./components/Header";
 import GroupCards from "./components/GroupCards";
-import "./App.css";
 import ShopCar from "./components/ShopCar";
 import api from "./services/api";
 
-interface Pokemon {
-  id: number;
-  name: string;
-  url: string;
-  image_url: string;
-}
+import IPokemon from "./interfaces/IPokemon";
+
+import "./App.css";
+import getRandomPrice from "./utils/randomPrice";
 
 interface SelectedPokemon {
   id: number;
   name: string;
   price: number;
+  type: string;
 }
 
 function App() {
-  const [pokemon, setPokemon] = useState<Pokemon[]>([]);
-  const [selectedPokemon, setSelectedPokemon] = useState<SelectedPokemon[]>([]);
+  const [pokemon, setPokemon] = useState<IPokemon[]>([]);
+  const [pokemonWatter, setPokemonWatter] = useState<IPokemon[]>([]);
+  const [pokeCar, setPokeCar] = useState<IPokemon[]>([]);
 
   useEffect(() => {
-    const getFirePokemon = async () => {
-      const firePokemon = await api.get("type/fire");
+    const getPokemon = async () => {
+      const resFirePokemon = await api.get("type/fire");
+      const resWaterPokemon = await api.get("type/water");
 
-      const filteredPokemon = firePokemon.data.pokemon.map(
-        (poke: any, index: number): Pokemon => {
+      const firePokemon = resFirePokemon.data.pokemon.map(
+        (poke: any, index: number): IPokemon => {
+          const arrayPokemon = poke.pokemon.url.split("/");
+          const price = parseFloat(getRandomPrice().toFixed(2));
+
           return {
-            id: index + 1,
+            id: arrayPokemon[6],
             name: poke.pokemon.name.toUpperCase(),
             url: poke.pokemon.url,
             image_url: "",
+            type: "fire",
+            price,
           };
         }
       );
 
-      setPokemon(filteredPokemon);
+      const waterPokemon = resWaterPokemon.data.pokemon.map(
+        (poke: any, index: number): IPokemon => {
+          const arrayPokemon = poke.pokemon.url.split("/");
+          const price = parseFloat(getRandomPrice().toFixed(2));
+          return {
+            id: arrayPokemon[6],
+            name: poke.pokemon.name.toUpperCase(),
+            url: poke.pokemon.url,
+            image_url: "",
+            type: "watter",
+            price,
+          };
+        }
+      );
+
+      const allPokemon = [...firePokemon, ...waterPokemon];
+
+      setPokemon(allPokemon);
     };
 
-    getFirePokemon();
+    getPokemon();
   }, []);
+
+  const handlePokeCar = (poke: IPokemon, type: string) => {
+    if (type === "+") {
+      const newPokeCar = [...pokeCar, poke];
+      setPokeCar(newPokeCar);
+    }
+  };
 
   return (
     <div>
       <Header />
       <div className="group">
-        <GroupCards data={pokemon} />
-        <ShopCar items={selectedPokemon} />
+        <GroupCards data={pokemon} onClick={handlePokeCar} />
+        <ShopCar items={pokeCar} />
       </div>
     </div>
   );

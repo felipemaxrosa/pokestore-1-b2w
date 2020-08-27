@@ -1,12 +1,21 @@
+:root {
+  --bg-fire1: #870000;
+  --bg-fire2: #190a05;
+  --bg-watter1: #00d2ff;
+  --bg-watter2: #3a7bd5;
+}
+
 .card {
-  margin: 10px;
-  background: #f0f0f5;
+  margin-right: 30px;
+  padding: 0;
+  margin-bottom: 10px;
   border-radius: 5px;
-  box-shadow: black 2px 2px 5px;
+  box-shadow: lightgray 2px 2px 5px;
   min-width: 220px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 }
 .details {
   display: flex;
@@ -21,6 +30,7 @@
 
 a {
   background-color: #089b08;
+  border: none;
   color: black;
   font-weight: bold;
   text-decoration: none;
@@ -29,10 +39,10 @@ a {
   display: flex;
   flex-direction: row;
   height: 50px;
-  bottom: 0;
-  width: 100%;
+  min-width: 100%;
   margin-bottom: 0;
-  border-radius: 0 0 5px 5px;
+  overflow: hidden;
+  transition: 0.2s ease-in;
 }
 
 p {

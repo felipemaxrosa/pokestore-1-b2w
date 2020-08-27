@@ -4,20 +4,19 @@ import api from "../../services/api";
 import pokeball from "../../assets/pokeball.png";
 import { FiArrowRight } from "react-icons/fi";
 
+import IPokemon from "../../interfaces/IPokemon";
+
 interface Pokemon {
-  pokemon: {
-    id: number;
-    name: string;
-    url: string;
-    image_url: string;
-  };
+  pokemon: IPokemon;
+  onClick: any;
 }
 
-const Card: React.SFC<Pokemon> = ({ pokemon }) => {
+const Card: React.SFC<Pokemon> = ({ pokemon, onClick }) => {
   const { name, url } = pokemon;
 
   const [image, setImage] = useState("");
   const [isSelected, setIsSelected] = useState(false);
+  const [curPokemon, setCurPokemon] = useState(pokemon);
 
   useEffect(() => {
     const getImage = async () => {
@@ -34,20 +33,23 @@ const Card: React.SFC<Pokemon> = ({ pokemon }) => {
   }, []);
 
   const handleClick = () => {
-    setIsSelected(!isSelected);
+    onClick(curPokemon, "+");
   };
 
   return (
-    <div className="card">
+    <div
+      className="card"
+      style={curPokemon.type === "fire" ? styles.fireStyle : styles.watterStyle}
+    >
       <div className="details">
         <img
-          style={image === pokeball ? { width: "96px" } : {}}
+          style={image === pokeball ? { width: "96px" } : { width: "120px" }}
           className="img-pokemon"
           src={image}
-          alt="pokemon"
+          alt={curPokemon.name}
         />
         <p>{name}</p>
-        <strong className="value">R$ 300.00</strong>
+        <strong className="value">R$ {curPokemon.price.toFixed(2)}</strong>
       </div>
       <a onClick={handleClick}>
         <span>{!isSelected ? "EU QUERO!" : "REMOVER DA CESTINHA"}</span>
@@ -57,3 +59,14 @@ const Card: React.SFC<Pokemon> = ({ pokemon }) => {
 };
 
 export default Card;
+
+const styles = {
+  fireStyle: {
+    background: "linear-gradient(to right, #870000, #190a05)",
+    color: "#fff",
+  },
+  watterStyle: {
+    background: "linear-gradient(to right, #00d2ff, #3a7bd5)",
+    color: "#fff",
+  },
+};

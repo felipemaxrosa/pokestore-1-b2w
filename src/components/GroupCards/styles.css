@@ -1,8 +1,7 @@
 #group-cards {
-  padding: 25px;
-  background-color: coral;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-items: flex-start;
+  margin-right: 7px;
 }

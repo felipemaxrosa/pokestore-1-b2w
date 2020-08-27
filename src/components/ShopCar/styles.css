@@ -2,9 +2,10 @@
   background-color: chocolate;
   min-width: 450px;
   max-height: 550px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .shop-car-title {
@@ -12,7 +13,11 @@
   display: flex;
   justify-content: space-between;
   justify-items: center;
-  border: black 1px solid;
+}
+
+.table {
+  background-color: yellow;
+  min-height: 400px;
 }
 
 .shop-car-footer {
@@ -22,8 +27,7 @@
   justify-items: center;
 }
 
-.shop-car-items {
-  background-color: yellow;
+.pokecar-items {
   height: 100%;
 }
 
