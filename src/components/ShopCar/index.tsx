@@ -16,6 +16,7 @@ interface NewItem {
 
 interface ItemsProps {
   items: Array<IPokemon>;
+  onClick: any;
 }
 
 // const handleItemsInMyShopCar = (item: NewItem) => {
@@ -23,7 +24,7 @@ interface ItemsProps {
 //   console.log(newItem);
 // };
 
-const ShopCar: React.SFC<ItemsProps> = ({ items }) => {
+const ShopCar: React.SFC<ItemsProps> = ({ items, onClick }) => {
   return (
     <div className="shop-car">
       <header className="shop-car-title">
@@ -52,7 +53,13 @@ const ShopCar: React.SFC<ItemsProps> = ({ items }) => {
                   <td>{item.name}</td>
                   <td>{item.price}</td>
                   <td>
-                    <a href="#" style={{ backgroundColor: "transparent" }}>
+                    <a
+                      href="#"
+                      style={{ backgroundColor: "transparent" }}
+                      onClick={() => {
+                        onClick(item, "-");
+                      }}
+                    >
                       <FiDelete />
                     </a>
                   </td>

@@ -69,6 +69,9 @@ function App() {
     if (type === "+") {
       const newPokeCar = [...pokeCar, poke];
       setPokeCar(newPokeCar);
+    } else {
+      const newPokeCar = pokeCar.filter((pokemon) => pokemon.id !== poke.id);
+      setPokeCar(newPokeCar);
     }
   };
 
@@ -77,7 +80,7 @@ function App() {
       <Header />
       <div className="group">
         <GroupCards data={pokemon} onClick={handlePokeCar} />
-        <ShopCar items={pokeCar} />
+        <ShopCar items={pokeCar} onClick={handlePokeCar} />
       </div>
     </div>
   );
