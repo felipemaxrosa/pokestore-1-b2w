@@ -19,67 +19,73 @@ interface ItemsProps {
   onClick: any;
 }
 
-// const handleItemsInMyShopCar = (item: NewItem) => {
-//   const newItem = item;
-//   console.log(newItem);
-// };
-
 const ShopCar: React.SFC<ItemsProps> = ({ items, onClick }) => {
   return (
-    <div className="shop-car">
-      <header className="shop-car-title">
-        <h2>PokeCar</h2>
-        <FiShoppingCart size="35px" />
-      </header>
+    <div className="container">
+      <div className="shop-car">
+        <header className="shop-car-title">
+          <h2>Pokecar</h2>
+          <FiShoppingCart size="35px" />
+        </header>
 
-      <div className="table">
-        <table className="pokecar-items">
-          <thead>
-            {items.length > 0 && (
+        <div className="scroll">
+          <table>
+            <thead>
               <tr>
+                <th>Item</th>
                 <th>#ID</th>
-                <th>Pokemon</th>
+                <th>Nome do Pokemon</th>
                 <th>Preço</th>
-                <th>Excluir</th>
+                <th>Remover</th>
               </tr>
-            )}
-          </thead>
+            </thead>
 
-          <tbody>
-            {items.map((item: IPokemon, index: number) => {
-              return (
-                <tr key={index}>
-                  <td>{item.id}</td>
-                  <td>{item.name}</td>
-                  <td>{item.price}</td>
-                  <td>
-                    <a
-                      href="#"
-                      style={{ backgroundColor: "transparent" }}
-                      onClick={() => {
-                        onClick(item, "-");
-                      }}
-                    >
-                      <FiDelete />
-                    </a>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+            <tbody>
+              {items.map((item: IPokemon, index: number) => {
+                return (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{item.id}</td>
+                    <td>{item.name}</td>
+                    <td>{item.price}</td>
+                    <td>
+                      <a
+                        href="#"
+                        style={{ backgroundColor: "transparent" }}
+                        onClick={() => {
+                          onClick(item, "-");
+                        }}
+                      >
+                        <FiDelete />
+                      </a>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <footer className="shop-car-footer">
-        <h2>Total:</h2>
-        <h2>
-          {items
-            .reduce((acc, cur) => {
-              return (acc += cur.price);
-            }, 0)
-            .toFixed(2)}
-        </h2>
-      </footer>
+      <div className="pokecar-footer">
+        <footer className="shop-car-footer">
+          <div className="pokecar-flexrow">
+            <h2>Total:</h2>
+            <h2>
+              {" R$ "}
+
+              {items
+                .reduce((acc, cur) => {
+                  return (acc += cur.price);
+                }, 0)
+                .toFixed(2)}
+            </h2>
+          </div>
+          <div>
+            <a href="">Finalizar Compra</a>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 };

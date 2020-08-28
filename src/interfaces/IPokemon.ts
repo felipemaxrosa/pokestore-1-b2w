@@ -5,4 +5,5 @@ export default interface IPokemon {
   url: string;
   image_url: string;
   price: number;
+  selected: boolean;
 }

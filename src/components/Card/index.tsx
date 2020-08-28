@@ -15,7 +15,6 @@ const Card: React.SFC<Pokemon> = ({ pokemon, onClick }) => {
   const { name, url } = pokemon;
 
   const [image, setImage] = useState("");
-  const [isSelected, setIsSelected] = useState(false);
   const [curPokemon, setCurPokemon] = useState(pokemon);
 
   useEffect(() => {
@@ -33,7 +32,11 @@ const Card: React.SFC<Pokemon> = ({ pokemon, onClick }) => {
   }, []);
 
   const handleClick = () => {
-    onClick(curPokemon, "+");
+    if (!pokemon.selected) {
+      onClick(curPokemon, "+");
+    } else {
+      onClick(curPokemon, "-");
+    }
   };
 
   return (
@@ -52,7 +55,7 @@ const Card: React.SFC<Pokemon> = ({ pokemon, onClick }) => {
         <strong className="value">R$ {curPokemon.price.toFixed(2)}</strong>
       </div>
       <a onClick={handleClick}>
-        <span>{!isSelected ? "EU QUERO!" : "REMOVER DA CESTINHA"}</span>
+        {!pokemon.selected ? "EU QUERO!" : "REMOVER DA CESTINHA"}
       </a>
     </div>
   );

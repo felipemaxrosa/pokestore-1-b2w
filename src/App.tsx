@@ -9,17 +9,12 @@ import IPokemon from "./interfaces/IPokemon";
 import "./App.css";
 import getRandomPrice from "./utils/randomPrice";
 
-interface SelectedPokemon {
-  id: number;
-  name: string;
-  price: number;
-  type: string;
-}
-
 function App() {
   const [pokemon, setPokemon] = useState<IPokemon[]>([]);
-  const [pokemonWatter, setPokemonWatter] = useState<IPokemon[]>([]);
+  const [filterdPokemon, setFilteredPokemon] = useState<IPokemon[]>([]);
   const [pokeCar, setPokeCar] = useState<IPokemon[]>([]);
+
+  // trabalhar no filteredPokemon
 
   useEffect(() => {
     const getPokemon = async () => {
@@ -38,6 +33,7 @@ function App() {
             image_url: "",
             type: "fire",
             price,
+            selected: false,
           };
         }
       );
@@ -53,6 +49,7 @@ function App() {
             image_url: "",
             type: "watter",
             price,
+            selected: false,
           };
         }
       );
@@ -69,9 +66,21 @@ function App() {
     if (type === "+") {
       const newPokeCar = [...pokeCar, poke];
       setPokeCar(newPokeCar);
+
+      const index = pokemon.findIndex((pokemon) => pokemon.id === poke.id);
+      const pokemonUpdated = [...pokemon];
+      pokemonUpdated[index].selected = true;
+
+      setPokemon(pokemonUpdated);
     } else {
       const newPokeCar = pokeCar.filter((pokemon) => pokemon.id !== poke.id);
       setPokeCar(newPokeCar);
+
+      const index = pokemon.findIndex((pokemon) => pokemon.id === poke.id);
+      const pokemonUpdated = [...pokemon];
+      pokemonUpdated[index].selected = false;
+
+      setPokemon(pokemonUpdated);
     }
   };
 

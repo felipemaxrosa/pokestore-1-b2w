@@ -1,11 +1,19 @@
-.shop-car {
-  background-color: chocolate;
-  min-width: 450px;
+.container {
+  border: 1px solid lightgray;
+  box-shadow: black 2px 2px 5px;
   max-height: 550px;
+  height: 550px;
   border-radius: 10px;
+}
+
+.shop-car {
+  min-width: 450px;
+  max-width: 450px;
+  max-height: 420px;
+  height: 420px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  overflow: hidden;
 }
 
 .shop-car-title {
@@ -15,14 +23,43 @@
   justify-items: center;
 }
 
-.table {
-  background-color: yellow;
-  min-height: 400px;
+table {
+  /* box-sizing: border-box;
+  border-collapse: collapse;
+  text-align: center;
+  overflow-y: scroll;
+  table-layout: fixed;
+  max-height: 400px; */
+
+  width: 440px;
+  margin: auto;
+  table-layout: auto;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+.scroll {
+  overflow-x: auto;
+}
+
+thead {
+  background-color: #dbdbdd;
+}
+
+tbody {
+  max-height: 300px;
+}
+
+.pokecar-flexrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .shop-car-footer {
   padding: 15px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   justify-items: center;
 }
