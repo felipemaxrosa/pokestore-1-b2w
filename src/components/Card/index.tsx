@@ -48,7 +48,7 @@ const Card: React.SFC<Pokemon> = ({ pokemon, onClick }) => {
     >
       <div className="details">
         <img
-          style={image === pokeball ? { width: "96px" } : { width: "120px" }}
+          style={image === pokeball ? { width: "80px" } : { width: "100px" }}
           className="img-pokemon"
           src={image}
           alt={curPokemon.name}
@@ -57,7 +57,7 @@ const Card: React.SFC<Pokemon> = ({ pokemon, onClick }) => {
         <strong className="value">R$ {curPokemon.price.toFixed(2)}</strong>
       </div>
       <a onClick={handleClick}>
-        {!pokemon.selected ? "EU QUERO!" : "REMOVER DA CESTINHA"}
+        {!pokemon.selected ? "COMPRAR" : "REMOVER DA CESTINHA"}
       </a>
     </div>
   );

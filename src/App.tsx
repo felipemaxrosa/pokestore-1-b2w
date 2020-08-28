@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import GroupCards from "./components/GroupCards";
 import ShopCar from "./components/ShopCar";
 import api from "./services/api";
+import ModalCheckout from "./components/ModalCheckout";
 
 import IPokemon from "./interfaces/IPokemon";
 
@@ -13,6 +14,9 @@ function App() {
   const [pokemon, setPokemon] = useState<IPokemon[]>([]);
   const [filteredPokemon, setFilteredPokemon] = useState<IPokemon[]>([]);
   const [pokeCar, setPokeCar] = useState<IPokemon[]>([]);
+  const [isModalCheckoutOpen, setIsModalCheckoutOpen] = useState(false);
+  const [sumValues, setSumValues] = useState(0);
+  const [amountItems, setAmountItems] = useState(0);
 
   useEffect(() => {
     const getPokemon = async () => {
@@ -102,13 +106,34 @@ function App() {
     setFilteredPokemon(filtered);
   };
 
+  const handleCloseModal = () => {
+    setIsModalCheckoutOpen(false);
+  };
+
+  const handleOpenModal = (sum: number, amount: number) => {
+    setAmountItems(amount);
+    setSumValues(sum);
+    setIsModalCheckoutOpen(true);
+  };
+
   return (
     <div>
       <Header onChangeSearch={handleSearch} />
       <div className="group">
         <GroupCards data={filteredPokemon} onClick={handlePokeCar} />
-        <ShopCar items={pokeCar} onClick={handlePokeCar} />
+        <ShopCar
+          items={pokeCar}
+          onClick={handlePokeCar}
+          onOpen={handleOpenModal}
+        />
       </div>
+      {isModalCheckoutOpen && (
+        <ModalCheckout
+          totalValue={sumValues}
+          amountItems={amountItems}
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
   );
 }

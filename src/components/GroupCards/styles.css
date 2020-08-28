@@ -4,4 +4,5 @@
   flex-wrap: wrap;
   justify-items: flex-start;
   margin-right: 7px;
+  max-width: 1000px;
 }

@@ -17,9 +17,24 @@ interface NewItem {
 interface ItemsProps {
   items: Array<IPokemon>;
   onClick: any;
+  onOpen: any;
 }
 
-const ShopCar: React.SFC<ItemsProps> = ({ items, onClick }) => {
+const ShopCar: React.SFC<ItemsProps> = ({ items, onClick, onOpen }) => {
+  //const sortPokemon = items.sort((a, b) => (a.name < b.name ? -1 : 1));
+
+  const handleOpen = () => {
+    const sum = items
+      .reduce((acc, cur) => {
+        return (acc += cur.price);
+      }, 0)
+      .toFixed(2);
+
+    const amount = items.length;
+
+    onOpen(sum, amount);
+  };
+
   return (
     <div className="container">
       <div className="shop-car">
@@ -82,7 +97,9 @@ const ShopCar: React.SFC<ItemsProps> = ({ items, onClick }) => {
             </h2>
           </div>
           <div>
-            <a href="">Finalizar Compra</a>
+            <button onClick={handleOpen} disabled={items.length < 1}>
+              Finalizar Compra
+            </button>
           </div>
         </footer>
       </div>

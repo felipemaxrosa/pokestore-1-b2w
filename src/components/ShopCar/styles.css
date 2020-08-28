@@ -1,16 +1,18 @@
 .container {
   border: 1px solid lightgray;
   box-shadow: black 2px 2px 5px;
-  max-height: 550px;
-  height: 550px;
+  min-height: 480px;
+  height: 480px;
   border-radius: 10px;
+  position: fixed;
+  right: 12px;
 }
 
 .shop-car {
-  min-width: 450px;
-  max-width: 450px;
-  max-height: 420px;
-  height: 420px;
+  min-width: 460px;
+  max-width: 460px;
+  max-height: 350px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -24,18 +26,12 @@
 }
 
 table {
-  /* box-sizing: border-box;
-  border-collapse: collapse;
-  text-align: center;
-  overflow-y: scroll;
-  table-layout: fixed;
-  max-height: 400px; */
-
   width: 440px;
   margin: auto;
   table-layout: auto;
   text-align: center;
   border-collapse: collapse;
+  font-size: 0.9rem;
 }
 
 .scroll {
@@ -73,4 +69,18 @@ tbody {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+button {
+  width: 100%;
+  height: 50px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: 0.1s ease-in;
+}
+
+button:hover {
+  background-color: rgb(126, 124, 124);
+  color: #fff;
 }
