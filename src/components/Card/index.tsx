@@ -56,9 +56,12 @@ const Card: React.SFC<Pokemon> = ({ pokemon, onClick }) => {
         <p>{name}</p>
         <strong className="value">R$ {curPokemon.price.toFixed(2)}</strong>
       </div>
-      <a onClick={handleClick}>
-        {!pokemon.selected ? "COMPRAR" : "REMOVER DA CESTINHA"}
-      </a>
+
+      <div className="buy">
+        <a onClick={handleClick}>
+          {!pokemon.selected ? "COMPRAR" : "REMOVER DA CESTINHA"}
+        </a>
+      </div>
     </div>
   );
 };
