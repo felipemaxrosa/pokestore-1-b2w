@@ -15,7 +15,7 @@ const Header: React.SFC<HeaderProps> = ({ onChangeSearch }) => {
 
   return (
     <div>
-      <h1 className="title">PokeStore -Fire / Water</h1>
+      <h1 className="title">PokeStore - Fire / Water</h1>
       <div className="header">
         <img id="logo" src={logo} alt="pokestore" />
         <input

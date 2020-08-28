@@ -34,6 +34,10 @@ table {
   font-size: 0.9rem;
 }
 
+td {
+  height: 30px;
+}
+
 .scroll {
   overflow-x: auto;
 }

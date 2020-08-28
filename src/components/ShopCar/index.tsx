@@ -71,7 +71,7 @@ const ShopCar: React.SFC<ItemsProps> = ({ items, onClick, onOpen }) => {
                           onClick(item, "-");
                         }}
                       >
-                        <FiDelete />
+                        <FiDelete size={20} color="black" />
                       </a>
                     </td>
                   </tr>

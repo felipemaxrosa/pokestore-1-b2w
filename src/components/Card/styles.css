@@ -39,7 +39,7 @@
   margin-bottom: 10px;
 }
 
-a {
+.buy a {
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 5px;
   box-shadow: #000 2px 2px 5px;
