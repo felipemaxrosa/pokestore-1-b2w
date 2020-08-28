@@ -12,6 +12,7 @@
   border-radius: 5px;
   box-shadow: lightgray 2px 2px 5px;
   min-width: 220px;
+  max-height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -34,8 +34,10 @@ const Card: React.SFC<Pokemon> = ({ pokemon, onClick }) => {
   const handleClick = () => {
     if (!pokemon.selected) {
       onClick(curPokemon, "+");
+      console.log(curPokemon);
     } else {
       onClick(curPokemon, "-");
+      console.log(curPokemon);
     }
   };
 

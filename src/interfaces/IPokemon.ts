@@ -1,5 +1,5 @@
 export default interface IPokemon {
-  id: number;
+  id: string;
   name: string;
   type: string;
   url: string;

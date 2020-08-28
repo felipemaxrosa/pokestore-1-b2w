@@ -11,10 +11,8 @@ import getRandomPrice from "./utils/randomPrice";
 
 function App() {
   const [pokemon, setPokemon] = useState<IPokemon[]>([]);
-  const [filterdPokemon, setFilteredPokemon] = useState<IPokemon[]>([]);
+  const [filteredPokemon, setFilteredPokemon] = useState<IPokemon[]>([]);
   const [pokeCar, setPokeCar] = useState<IPokemon[]>([]);
-
-  // trabalhar no filteredPokemon
 
   useEffect(() => {
     const getPokemon = async () => {
@@ -23,11 +21,11 @@ function App() {
 
       const firePokemon = resFirePokemon.data.pokemon.map(
         (poke: any, index: number): IPokemon => {
-          const arrayPokemon = poke.pokemon.url.split("/");
+          //const arrayPokemon = poke.pokemon.url.split("/");
           const price = parseFloat(getRandomPrice().toFixed(2));
 
           return {
-            id: arrayPokemon[6],
+            id: `fire-${index + 1}`,
             name: poke.pokemon.name.toUpperCase(),
             url: poke.pokemon.url,
             image_url: "",
@@ -40,14 +38,15 @@ function App() {
 
       const waterPokemon = resWaterPokemon.data.pokemon.map(
         (poke: any, index: number): IPokemon => {
-          const arrayPokemon = poke.pokemon.url.split("/");
+          //const arrayPokemon = poke.pokemon.url.split("/");
           const price = parseFloat(getRandomPrice().toFixed(2));
+          //id: arrayPokemon[6],
           return {
-            id: arrayPokemon[6],
+            id: `water-${index + 1}`,
             name: poke.pokemon.name.toUpperCase(),
             url: poke.pokemon.url,
             image_url: "",
-            type: "watter",
+            type: "water",
             price,
             selected: false,
           };
@@ -57,6 +56,7 @@ function App() {
       const allPokemon = [...firePokemon, ...waterPokemon];
 
       setPokemon(allPokemon);
+      setFilteredPokemon(allPokemon);
     };
 
     getPokemon();
@@ -67,28 +67,46 @@ function App() {
       const newPokeCar = [...pokeCar, poke];
       setPokeCar(newPokeCar);
 
-      const index = pokemon.findIndex((pokemon) => pokemon.id === poke.id);
-      const pokemonUpdated = [...pokemon];
+      //const index = pokemon.findIndex((pokemon) => pokemon.id === poke.id);
+      const index = filteredPokemon.findIndex(
+        (pokemon) => pokemon.id === poke.id
+      );
+      //const pokemonUpdated = [...pokemon];
+      const pokemonUpdated = [...filteredPokemon];
       pokemonUpdated[index].selected = true;
 
-      setPokemon(pokemonUpdated);
+      //setPokemon(pokemonUpdated);
+      setFilteredPokemon(pokemonUpdated);
     } else {
       const newPokeCar = pokeCar.filter((pokemon) => pokemon.id !== poke.id);
       setPokeCar(newPokeCar);
 
-      const index = pokemon.findIndex((pokemon) => pokemon.id === poke.id);
-      const pokemonUpdated = [...pokemon];
+      //const index = pokemon.findIndex((pokemon) => pokemon.id === poke.id);
+      const index = filteredPokemon.findIndex(
+        (pokemon) => pokemon.id === poke.id
+      );
+      //const pokemonUpdated = [...pokemon];
+      const pokemonUpdated = [...filteredPokemon];
       pokemonUpdated[index].selected = false;
 
-      setPokemon(pokemonUpdated);
+      //setPokemon(pokemonUpdated);
+      setFilteredPokemon(pokemonUpdated);
     }
+  };
+
+  const handleSearch = (search: string) => {
+    const searchUpperCase = search.toUpperCase();
+    const filtered = pokemon.filter((pokemon) => {
+      return pokemon.name.includes(searchUpperCase);
+    });
+    setFilteredPokemon(filtered);
   };
 
   return (
     <div>
-      <Header />
+      <Header onChangeSearch={handleSearch} />
       <div className="group">
-        <GroupCards data={pokemon} onClick={handlePokeCar} />
+        <GroupCards data={filteredPokemon} onClick={handlePokeCar} />
         <ShopCar items={pokeCar} onClick={handlePokeCar} />
       </div>
     </div>
